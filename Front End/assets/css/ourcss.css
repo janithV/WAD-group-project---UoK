@@ -622,7 +622,7 @@ border: 2px solid #47b2e4;
   color: #fff;
 }
 
-.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
+.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i ,.contact .info .date:hover i{
   background: #47b2e4;
   color: #fff;
 }
@@ -709,7 +709,7 @@ border: 2px solid #47b2e4;
   padding: 10px 12px;
 }
 
-.contact .php-email-form button[type="submit"] {
+.contact .php-email-form button[type="submit"] , .contact  button[type="submit"]{
   background: #47b2e4;
   border: 0;
   padding: 12px 34px;
@@ -718,7 +718,7 @@ border: 2px solid #47b2e4;
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type="submit"]:hover {
+.contact .php-email-form button[type="submit"]:hover,.contact  button[type="submit"]:hover {
   background: #209dd8;
 }
 
