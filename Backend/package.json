@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "REST API backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janithV/WAD-group-project---UoK.git"
+  },
+  "keywords": [
+    "node",
+    "restfull",
+    "api"
+  ],
+  "author": "janith vidanagamage",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janithV/WAD-group-project---UoK/issues"
+  },
+  "homepage": "https://github.com/janithV/WAD-group-project---UoK#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
