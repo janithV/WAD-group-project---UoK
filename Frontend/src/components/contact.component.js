@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Navbar from "./navbar.component.js";
+import Footer from "./footer.component.js";
+import backgroundim2 from '../assets/img/contactback.jpg'
+
+
 export default class Contact extends Component{
     componentDidMount() {
         AOS.init({duration: 1000,
@@ -8,12 +13,15 @@ export default class Contact extends Component{
         }
     render(){
         return(
+          <div style={{backgroundImage:`url(${backgroundim2})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}}>
+          <Navbar/>
+          <br></br>  <br></br>        <br></br>
             <section id="contact" className="contact" style={{paddingTop:'30px', paddingBottom:'30px'}}>
     <div className="container" data-aos="fade-up">
 
       <div className="section-title">
-        <h2>Contact</h2>
-        <p>Pls Feel Free to Contact Us</p>
+        <h1>Contact</h1>
+        <p style={{color:'white'}}>Pls Feel Free to Contact Us</p>
       </div>
 
       <div className="row">
@@ -76,6 +84,8 @@ export default class Contact extends Component{
 
     </div>
   </section>
+  <Footer/>
+  </div>
         )
     }
 }

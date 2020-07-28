@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import AOS from "aos";
+import Navbar from "./navbar.component";
+import Footer from "./footer.component";
 
 import "aos/dist/aos.css";
 export default class Event extends Component{
@@ -9,7 +11,10 @@ export default class Event extends Component{
         }
     render(){
         return(
+          <div>
+        < Navbar/>   
             <section id="contact" className="contact" style={{paddingTop:'30px',paddingBottom:'30px'}}>
+                     <br></br>
             <div className="container" data-aos="fade-up">
         
               <div className="section-title">
@@ -51,7 +56,11 @@ export default class Event extends Component{
                         <p>3.00 PM</p>
                     </div>
         
-                    <div className="text-center" style={{paddingTop: "50px"}}><button type="submit">Reserve Ticket</button></div>
+                    <div className="text-center" style={{paddingTop: "50px"}}>
+                    {
+                        localStorage.getItem("loggedIn") ==="loggedIn"? <button type="submit">Reserve Ticket</button> : <button type="submit">Please Sign In to Reserve</button>
+                    }
+                      </div>
                   </div>
         
                 </div>
@@ -78,7 +87,9 @@ export default class Event extends Component{
               </div>
         
             </div>
-          </section>
+            <br></br></section>
+            <Footer/>
+          </div>
         )
     }
 }

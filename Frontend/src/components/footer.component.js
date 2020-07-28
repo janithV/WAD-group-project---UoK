@@ -70,5 +70,4 @@ export default class Event extends Component{
 
 
 
-
   

@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import banner from '../assets/img/images1.jpg';
-import Header from './header.component';
+import GetLandingAllEvents from "./getLandingAllEvents.component.js";
+import GetRecomendedEvents from "./getRecomendedEvents.component.js";
+import Navbar from "./navbar.component";
+import Footer from "./footer.component";
+import Header from "./header.component";
+
 
 export default class LandingPage extends Component{
     componentDidMount() {
@@ -12,9 +16,8 @@ export default class LandingPage extends Component{
     render(){
         return(
             <div>
+              <Navbar/>  
               <Header/>
-                
-
   <section id="Events" className="events section-bg cta">
     <div className="container" data-aos="fade-up">
 
@@ -23,74 +26,11 @@ export default class LandingPage extends Component{
         <p>All the upcomming events</p>
       </div>
 
-      <div className="row">
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div> 
-        </div>  
+      
+          <GetLandingAllEvents/>
         
 
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid"style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-      
-      
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-      </div>
+   
 
     </div>
   </section>
@@ -104,77 +44,11 @@ export default class LandingPage extends Component{
         <p>Recommended upcomming events for you</p>
       </div>
 
-      <div className="row">
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <div className="iconbox">
-           <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-           <h4><a href="#/">Lorem Ipsum</a></h4>
-           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div> 
-        </div>  
-        
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-           <h4><a href="#/">Lorem Ipsum</a></h4>
-           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-           <h4><a href="#/">Lorem Ipsum</a></h4>
-           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-      
-      
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid"style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-        <div className="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-          <div className="iconbox">
-            <img src={banner} alt="" className="img-fluid" style={{width:'100%'}}/>
-            <h4><a href="#/">Lorem Ipsum</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          </div>
-        </div>
-
-      </div>
+      <GetRecomendedEvents/>
 
     </div>
   </section>
+  <Footer/>
             </div>
         )
     }
