@@ -47,8 +47,8 @@ export default class About extends Component{
         }
     render(){
         return(
-        <section style={{backgroundImage:`url(${backgroundim1})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}}>
-        <div className="wrap" >
+        <section style={{backgroundImage:`url(${backgroundim1})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}} >
+        <div className="wrap" data-aos="fade-up" data-aos-delay="200" >
         <h2>Log In With</h2>
         <form action="" onSubmit={this.handleSubmit}>
             <label for="">Username</label><br/>

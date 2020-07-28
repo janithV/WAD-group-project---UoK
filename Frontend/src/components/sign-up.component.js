@@ -65,7 +65,7 @@ export default class SignUp extends Component{
     render(){
         return(
             <section style={{backgroundImage:`url(${backgroundim1})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}}>
-            <div className="wrap" >
+            <div className="wrap" data-aos="fade-up" data-aos-delay="200">
             <h2>Sign Up Here</h2>
             <form action="" onSubmit={this.handleSubmit}>
              <input type="text" placeholder="First Name" value={this.state.fName} onChange={this.onFNamechange} required/>
