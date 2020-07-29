@@ -1,4 +1,5 @@
 /*General*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i');
 body {
   font-family: "Open Sans", sans-serif;
   color: #9e08bf;
@@ -52,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
+  padding-left: 290px;
 }
 
 .nav-menu > ul {
@@ -454,7 +456,7 @@ color: #990073;
 
 }
 
-.events .iconbox .icon{
+.events .iconbox .icon, .recevents .iconbox .icon{
 margin-bottom: 10px;
 }
 
@@ -469,12 +471,13 @@ font-weight: 500;
 margin-bottom: 15px;
 font-size: 24px;
 padding-left: 30px;
+padding-right: 30px;
 padding-top: 30px;
 text-align: justify;
 
 }
 
-.events .iconbox h4 a{
+.events .iconbox h4 a,.recevents .iconbox h4 a{
 color: #37517e;
 transition: ease-in-out 0.3s;
 }
@@ -492,7 +495,7 @@ text-align: justify;
 transform: translateY(-10px);
 }
 
-.events .iconbox:hover h4 a{
+.events .iconbox:hover h4 a,.recevents .iconbox:hover h4 a{
 color: #47b2e4;
 }
 
@@ -508,6 +511,12 @@ background:  url("../img/people-sitting-on-gang-chairs-2774556.jpg") fixed cente
 background-size: cover;
 padding: 120px 0;
 }
+
+.cta2 {
+  background:  url("../img/partyAllEventsBg.jpg") fixed center center;
+  background-size: cover;
+  padding: 120px 0;
+  }
 /*
 .cta h3 {
 color: #fff;

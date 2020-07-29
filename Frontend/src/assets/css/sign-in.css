@@ -3,7 +3,7 @@
 }
 
 
-body{
+.wrap{
     
     
     background: url("/img/elena-de-soto-w423NnHFjFg-unsplash.jpg");
@@ -21,11 +21,11 @@ body{
    margin-top: 50px;
 }
 
-form{
+.wrap form{
     
     margin-top: 30px;
 }
-input[type=text],input[type=password],input[type=submit]{
+.wrap input[type=text],.wrap input[type=password],.wrap input[type=submit],.wrap input[type=email]{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -39,14 +39,14 @@ input[type=text],input[type=password],input[type=submit]{
     
     
 }
-label{
+.wrap label{
     color:ivory ;
     font-size: 20px;
     font-weight: bold;
     font-family: initial;
 
 }
-input[type=submit]{
+.wrap input[type=submit]{
     
     width: 100%;
     padding: 15px;
@@ -59,7 +59,7 @@ input[type=submit]{
     cursor: pointer;
     font-family: initial;
 }
-input[type=submit]:hover{
+.wrap input[type=submit]:hover{
         
     opacity: 0.7; 
     background:#003366;
@@ -70,12 +70,12 @@ input[type=submit]:hover{
     color: ivory;
     font-family: initial;
 }
-p{
+.wrap p{
     text-align: center;
     color: ivory;
     font-family: initial;
 }
-p a{
+.wrap p a{
     text-decoration: none;
     font-weight: bold;
     color: darkred;
