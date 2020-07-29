@@ -58,8 +58,8 @@ export default class About extends Component{
             <input type="submit" value="Log In"/> 
         </form>        
         <p> Not a Member?<Link to ="/signUp">&nbsp;Sign Up Now </Link></p>
-        
-    </div></section> 
+    </div>
+    </section> 
         )
     }
 }

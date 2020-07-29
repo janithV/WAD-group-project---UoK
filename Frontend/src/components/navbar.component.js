@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {Link} from 'react-router-dom';
-import backgroundim from '../assets/img/heroFront.jpg'
+
 
 import $ from 'jquery';
 

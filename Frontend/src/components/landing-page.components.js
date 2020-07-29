@@ -14,6 +14,7 @@ export default class LandingPage extends Component{
         once:true});
         }
     render(){
+      const E = 8;
         return(
             <div>
               <Navbar/>  
@@ -27,7 +28,7 @@ export default class LandingPage extends Component{
       </div>
 
       
-          <GetLandingAllEvents/>
+          <GetLandingAllEvents limitE = {E}/>
         
 
    

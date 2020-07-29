@@ -2,23 +2,36 @@ import React, {Component} from 'react';
 import AOS from "aos";
 import Navbar from "./navbar.component";
 import Footer from "./footer.component";
+import axios from 'axios';
+import backgroundim4 from '../assets/img/contactback.jpg'
+
 
 import "aos/dist/aos.css";
 export default class Event extends Component{
-    componentDidMount() {
-        AOS.init({duration: 1000,
-        once:true});
-        }
+ 
+  state = {
+    events: []
+};
+
+componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/photos/' + this.props.match.params.id).then(res=>{
+        console.log(res);
+        this.setState({ events:res.data });
+    });
+    AOS.init({duration: 1000,
+        once:true
+    });
+    }
     render(){
         return(
-          <div>
-        < Navbar/>   
+          <div style={{backgroundImage:`url(${backgroundim4})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}}>
+        < Navbar/>   <br></br>  <br></br>  <br></br>      <br></br>
             <section id="contact" className="contact" style={{paddingTop:'30px',paddingBottom:'30px'}}>
                      <br></br>
             <div className="container" data-aos="fade-up">
         
               <div className="section-title">
-                <h1 style={{color:  '#9e08bf'}}>Info Studio</h1>
+                <h1 style={{color:  'white'}}>Info Studio</h1>
                 
               </div>
         

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import banner from '../assets/img/images1.jpg';
 import Navbar from "./navbar.component";
 import Footer from "./footer.component";
+
+import GetLandingAllEvents from "./getLandingAllEvents.component.js";
 
 export default class AllEvents extends Component{
     componentDidMount() {
@@ -11,6 +12,7 @@ export default class AllEvents extends Component{
         once:true});
         }
     render(){
+      const E = 12;
         return(
           <div>
          < Navbar/>
@@ -34,8 +36,8 @@ export default class AllEvents extends Component{
                         </div>
                     </div>
                 </form> 
-        
-              <div className="row">
+                <GetLandingAllEvents limitE = {E}/>
+              {/*<div className="row">
         
                 <div className="col-xl-3 col-md-6 d-flex align-items-stretch allEvents" data-aos="zoom-in" data-aos-delay="100">
                   <div className="iconbox">
@@ -145,7 +147,7 @@ export default class AllEvents extends Component{
                   </div>
                 </div>
         
-              </div>
+        </div>*/}
         
             </div>
            
