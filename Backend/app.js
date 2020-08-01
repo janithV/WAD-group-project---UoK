@@ -7,10 +7,6 @@ const eventsRouter= require('./api/routes/events');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-
-app.use('/events',eventsRouter);
-
-
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers",
@@ -24,6 +20,8 @@ app.use((req,res,next)=>{
     next();
 });
 
+
+app.use('/events',eventsRouter);
 
 //error handling
 app.use((req,res,next)=>{
