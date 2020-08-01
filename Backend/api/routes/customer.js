@@ -58,3 +58,4 @@ router.post('/addCustomer',(req,res,next)=>{
     
 });
 
+module.exports=router;
