@@ -8,7 +8,7 @@ export default class GetLandingAllEvents extends Component{
     };
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/photos',{
+        axios.get('http://localhost:3000/events',{
             params:{
                 _limit:this.props.limitE
             }
@@ -22,12 +22,14 @@ export default class GetLandingAllEvents extends Component{
             <div className="row">
           {this.state.events.map(event=>  
             
-            <div key ={event.id} className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div key ={event.eventid} className="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div className="iconbox">
               <div>
-                    <img src={event.url} alt="" className="img-fluid" style={{width:'100%'}}/>
-                    <h4><Link to ={'/event/' + event.id}>{event.title}</Link></h4>
-                    <p>{event.title}</p>
+                    
+                    <img src={event.imageUrl} alt="" className="img-fluid" style={{width:'100%'}}/>
+                    <h4><Link to ={'/events/' + event.eventid}>{event.name}</Link></h4>
+                    <p>{event.venue}</p>
+                    <p>{event.date}</p>
             </div>
           </div> 
         </div>

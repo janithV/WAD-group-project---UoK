@@ -8,9 +8,9 @@ export default class GetRecomendedEvents extends Component{
     };
 
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/photos',{
+        axios.get('http://localhost:3000/events',{
             params:{
-                _limit:8
+                _limit:this.props.limitE
             }
         }).then(res=>{
             console.log(res);
@@ -26,8 +26,9 @@ export default class GetRecomendedEvents extends Component{
             <div className="iconbox">
               <div>
                     <img src={event.url} alt="" className="img-fluid" style={{width:'100%'}}/>
-                    <h4><Link to ={'/event/' + event.id}>{event.title}</Link></h4>
-                    <p>{event.title}</p>
+                    <h4><Link to ={'/events/' + event.eventid}>{event.name}</Link></h4>
+                    <p>{event.venue}</p>
+                    <p>{event.date}</p>
             </div>
           </div> 
         </div>)}</div>  
