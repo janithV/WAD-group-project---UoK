@@ -14,7 +14,7 @@ export default class Event extends Component{
 };
 
 componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/photos/' + this.props.match.params.id).then(res=>{
+    axios.get('http://localhost:3000/events' + this.props.match.params.eventid).then(res=>{
         console.log(res);
         this.setState({ events:res.data });
     });
