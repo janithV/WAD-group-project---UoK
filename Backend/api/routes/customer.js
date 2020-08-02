@@ -29,16 +29,16 @@ router.get('/:custID',(req,res,next)=>{
     });
 });
 
-router.post('/addCustomer',(req,res,next)=>{ 
+router.post('/signUp',(req,res,next)=>{ 
     const Customer ={
         fname: req.body.fname,
         lname: req.body.lname,
-        email: req.body.date,
-        contactno: req.body.venue,
-        password: req.body.description,
-        companyName: req.body.startTime,
-        companyAddress: req.body.duration,
-        position: req.body.customerId
+        email: req.body.email,
+        contactno: req.body.contactno,
+        password: req.body.password,
+        companyName: req.body.companyName,
+        companyAddress: req.body.companyAddress,
+        position: req.body.position
         
     }
 
@@ -57,5 +57,41 @@ router.post('/addCustomer',(req,res,next)=>{
     })
     
 });
+
+router.get('/signIn', (req,res,next)=>{
+    const email=req.body.email;
+    const password=req.body.password;
+
+    conn.query("SELECT * from Customer where email = ? AND password =? ",[email,password],(err,rows,fields)=>{
+        if(!err){
+           // var bool = false;
+            if(rows){
+                for(var i=0; i <rows.length; i++){
+                    if(email === rows[i].email && password=== rows[i].password){
+                        //bool=true;
+                        res.status(200).json({
+                            message: "Verified",
+                            CustomerID : rows[i].customerid
+                        });
+                    }
+                }
+            
+            }
+            else{
+                res.status(409).json({
+                    message : "Error user not found"
+                })
+            }
+        }
+        else{
+            res.status(500).json({
+                message: err
+            });
+        }
+       
+    });
+
+
+})
 
 module.exports=router;
