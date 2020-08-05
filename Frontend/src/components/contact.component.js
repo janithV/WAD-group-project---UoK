@@ -4,9 +4,58 @@ import "aos/dist/aos.css";
 import Navbar from "./navbar.component.js";
 import Footer from "./footer.component.js";
 import backgroundim2 from '../assets/img/contactback.jpg'
+import axios from 'axios';
 
 
 export default class Contact extends Component{
+
+  state = {
+    fName: "",
+    eMail:"",
+    message:"",
+    subject:""
+  };
+
+  onFNamechange = e => {
+    this.setState({
+        fName: e.target.value
+    });
+  };
+  
+  onEmailchange = e => {
+    this.setState({
+        eMail: e.target.value
+    });
+  };
+  onMessagechange = e => {
+    this.setState({
+      message: e.target.value
+    });
+  };
+  onSubjectchange = e => {
+    this.setState({
+        passWord: e.target.value
+    });
+  };
+  handleSubmit = e => {
+    console.log("okay");
+    e.preventDefault();
+    const con = {
+      fname: this.state.fName,
+      message:this.state.message,
+      email:this.state.eMail,
+      subject: this.state.subject
+    };
+
+  axios.post("http://localhost:3000/email/contact", con)
+    .then(res => {console.log(res)
+    console.log("okay");
+    this.props.history.push('/'); 
+    window.location.reload();
+  })
+    .catch(err => console.log(err));
+   
+};
     componentDidMount() {
         AOS.init({duration: 1000,
         once:true});
@@ -52,27 +101,27 @@ export default class Contact extends Component{
         </div>
 
         <div className="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-          <form action="forms/contact.php" method="post" role="form" className="php-email-form">
+          <form action="forms/contact.php" method="post" role="form" className="php-email-form" onSubmit={this.handleSubmit}>
             <div className="form-row form-group">
               <div className=" col-md-6">
                 <label htmlFor="name">Your Name</label>
-                <input type="text" name="name" className="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <input type="text" name="name" className="form-control" id="name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" value={this.state.fName} onChange={this.onFNamechange}/>
                 <div className="validate"></div>
               </div>
               <div className=" col-md-6">
                 <label htmlFor="name">Your Email</label>
-                <input type="email" className="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="email" className="form-control" name="email" id="email" data-rule="email" data-msg="Please enter a valid email" value={this.state.eMail} onChange={this.onEmailchange}/>
                 <div className="validate"></div>
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="name">Subject</label>
-              <input type="text" className="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <input type="text" className="form-control" name="subject" id="subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" value={this.state.subject} onChange={this.onSubjectchange}/>
               <div className="validate"></div>
             </div>
             <div className="form-group">
               <label htmlFor="name">Message</label>
-              <textarea className="form-control" name="message" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+              <textarea className="form-control" name="message" rows="10" data-rule="required" value={this.state.message} onChange={this.onMessagechange} data-msg="Please write something for us"></textarea>
               <div className="validate"></div>
             </div>
             

@@ -29,9 +29,9 @@ export default class SignUp extends Component{
             eMail: e.target.value
         });
       };
-      onUsernamechange = e => {
+      onContactNumchange = e => {
         this.setState({
-            userName: e.target.value
+          contactNum: e.target.value
         });
       };
       onPasswordchange = e => {
@@ -40,28 +40,30 @@ export default class SignUp extends Component{
         });
       };
       handleSubmit = e => {
+        console.log("okay");
         e.preventDefault();
-        const data = {
-            fname: this.state.fName,
-            lname:this.state.lName,
-            email:this.state.eMail,
-            userName:this.state.userName,
+        const Customer = {
+          fname: this.state.fName,
+          lname:this.state.lName,
+          email:this.state.eMail,
+          contactno: this.state.contactNum,
+         // companyName: null,
+      //  companyAddress: null,
+      //  position: null,
+          //fname:this.state.userName,
             password:this.state.passWord,
-
-            // add these too
-            contactno: this.state.contactno ,      
-            companyName: this.state.companyName,
-            companyAddress: this.state.companyAddress,
-            position: this.state.position
         };
 
-      axios.post("https://localhost:3000/signUp", data)
-        .then(res => {console.log("Successfull")
-        this.props.history.push('/');
+      axios.post("http://localhost:3000/customer/signUp", Customer)
+        .then(res => {console.log(res)
+        console.log("okay");
         localStorage.setItem("username" , this.state.userName);
         localStorage.setItem("loggedIn" , "loggedIn");
-        window.location.reload();})
-        .catch(err => console.log(err))
+        this.props.history.push('/'); 
+        window.location.reload();
+      })
+        .catch(err => console.log(err));
+       
     };
   
     componentDidMount() {
@@ -77,7 +79,7 @@ export default class SignUp extends Component{
              <input type="text" placeholder="First Name" value={this.state.fName} onChange={this.onFNamechange} required/>
              <input type="text" placeholder="Last Name" value={this.state.lName} onChange={this.onLNamechange} required/>
              <input type="email" placeholder="Email.." value={this.state.eMail} onChange={this.onEmailchange} required/>
-             <input type="text" placeholder="Username.." value={this.state.userName} onChange={this.onUsernamechange} required/>
+             <input type="text" placeholder="Contact.." value={this.state.contactNum} onChange={this.onContactNumchange} required/>
              <input type="password" placeholder="Password.." value={this.state.passWord} onChange={this.onPasswordchange} required/>
              <input type="submit" value="Submit"/>
             </form>

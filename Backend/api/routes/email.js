@@ -30,3 +30,30 @@ var transporter = mailer.createTransport({
         }
       });
   });
+
+  router.post('/contact',(req,res,next)=>{
+    const c = {
+        emailadd: req.body.emailadd,
+        name: req.body.name,
+        subject: req.body.subject,
+        message: req.body.message,
+    }
+    
+
+    var mailOptions = {
+        from: 'ibackentertainment69@gmail.com',
+        to: c.emailadd,
+        subject: c.subject,
+        text: c.message
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          res.status(201).json({
+              message : 'Your Message Sent'
+          });
+        }
+      });
+  });
