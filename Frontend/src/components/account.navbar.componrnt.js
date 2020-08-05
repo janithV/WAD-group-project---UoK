@@ -10,30 +10,13 @@ export default class Navbar extends Component {
     constructor(props) {
 
         super(props);
-        this.logout = this.logout.bind(this);
-
+     
 
     }
 
     //handle log out
 
-    logout() {
-
-        localStorage.setItem('token', null);
-
-        localStorage.setItem('username', null);
-        localStorage.setItem('id', null);
-        localStorage.setItem('email', null);
-        localStorage.setItem('firstname', null);
-
-        const token = localStorage.getItem('token');
-
-        console.log("Logout method called : Token is : ", token);
-        console.log("Logout method called : username is : ", localStorage.getItem('username'));
-
-
-    }
-
+  
 
     render() {
 
@@ -53,14 +36,19 @@ export default class Navbar extends Component {
                                 <a className={"nav-link"} href={"#"}><Link to={"/"}><h4>Home</h4></Link></a>
 
                             </li>
+
+                            <li class={"nav-item"}>
+                                <a className={"nav-link"} href={"#"}><Link to={"/account"}><h4>Dashboard</h4></Link></a>
+
+                            </li>
                             <li className={"nav-item"}>
-                                <Link to={"/events"}> <a className={"nav-link"} href={"#"}><h4>Events</h4></a></Link>
+                                <Link to={"/events"}> <a className={"nav-link"} href={"#"}><h4>My Bookings</h4></a></Link>
 
                             </li>
 
                             <li className={"nav-item"}
-                                style={{display: localStorage.getItem("username") === "null" ? "none" : "block"}}>
-                                <Link to={"/event-registry"}> <a className={"btn btn-warning"} href={"#"}><h3>Host an
+                               >
+                                <Link to={"/hostevent"}> <a className={"btn btn-warning"} href={"#"}><h3>Host an
                                     Event</h3></a> </Link>
 
                             </li>
@@ -87,25 +75,7 @@ export default class Navbar extends Component {
                                 >
 
 
-                                    <Link to={"/login"}> <a a style={{
-                                        color: "#2196F3",
-                                        display: localStorage.getItem("username") === "null" ? "block" : "none"
-                                    }}
-                                                            className="dropdown-item"
-
-
-                                    >Log In</a></Link>
-
-
-                                    <Link to={"/login"}> <a style={{
-                                        color: "#F44336",
-                                        display: localStorage.getItem("username") === "null" ? "none" : "block"
-                                    }}
-                                                            className="dropdown-item"
-                                                            onClick={this.logout}
-                                    >
-                                        Log Out</a></Link>
-
+                                    
 
                                 </div>
                             </li>

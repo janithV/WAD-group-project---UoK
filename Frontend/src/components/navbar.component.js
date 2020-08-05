@@ -46,7 +46,7 @@ return(
           <li><Link to= "/about">About</Link></li>
           <li><Link to ="/allEvents">Events</Link></li>
           <li><Link to ="/contact">Contact</Link></li>
-          <li><Link to ={ localStorage.getItem("loggedIn") ==="loggedIn"? "/true":"/signIn"}>Account</Link></li>
+          <li><Link to ={ localStorage.getItem("loggedIn") ==="loggedIn"? "/account":"/account"}>Account</Link></li>
         </ul>
       </nav>
       {
