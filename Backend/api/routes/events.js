@@ -78,7 +78,7 @@ router.post('/deleteEvent/:eventId',(req,res,next)=>{
 });
 
 //localhost:3000/events/myEvents/(custId)
-router.get('/myEvents/:custId',(req,res,next)=>{
+router.get('/myHostedEvents/:custId',(req,res,next)=>{
     const id =req.params.custId; 
 
     conn.query("SELECT * FROM event WHERE customerid =?",[id], (err,rows,fields)=>{

@@ -42,14 +42,20 @@ export default class SignUp extends Component{
       handleSubmit = e => {
         e.preventDefault();
         const data = {
-            fName: this.state.fName,
-            lName:this.state.lName,
-            eMail:this.state.eMail,
+            fname: this.state.fName,
+            lname:this.state.lName,
+            email:this.state.eMail,
             userName:this.state.userName,
-            passWord:this.state.passWord
+            password:this.state.passWord,
+
+            // add these too
+            contactno: this.state.contactno ,      
+            companyName: this.state.companyName,
+            companyAddress: this.state.companyAddress,
+            position: this.state.position
         };
 
-      axios.post("https://jsonplaceholder.typicode.com/posts", data)
+      axios.post("https://localhost:3000/signUp", data)
         .then(res => {console.log("Successfull")
         this.props.history.push('/');
         localStorage.setItem("username" , this.state.userName);

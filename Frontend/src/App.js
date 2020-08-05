@@ -17,6 +17,7 @@ import AllEvents from "./components/all-events.component";
 import SignIn from "./components/sign-in.component";
 import SignUp from "./components/sign-up.component";
 import LandingPage from "./components/landing-page.components";
+import Account from "./components/account.dashboard.component";
 
 
 import About from "./components/about.component";
@@ -35,6 +36,7 @@ function App() {
       <Route path = "/about" exact component={About}/>
       <Route path = "/signIn" exact component={SignIn}/>
       <Route path = "/signUp" exact component={SignUp}/>
+      <Route path = "/account" exact component={Account}/>
       
     
     </Router>
