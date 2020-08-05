@@ -18,6 +18,8 @@ import SignIn from "./components/sign-in.component";
 import SignUp from "./components/sign-up.component";
 import LandingPage from "./components/landing-page.components";
 import Account from "./components/account.dashboard.component";
+import HostEvent from "./components/account.addevent.component";
+import ViewHEvent from "./components/account.viewhostevent.components";
 
 
 import About from "./components/about.component";
@@ -37,6 +39,8 @@ function App() {
       <Route path = "/signIn" exact component={SignIn}/>
       <Route path = "/signUp" exact component={SignUp}/>
       <Route path = "/account" exact component={Account}/>
+      <Route path = "/account/host" exact component={HostEvent}/>
+      <Route path = "/events/host/view/:id" exact component={ViewHEvent}/>
       
     
     </Router>

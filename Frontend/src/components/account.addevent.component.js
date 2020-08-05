@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './navbar';
+import Navbar from './account.navbar.componrnt';
+import Footer from "./footer.component";
 import TextField from '@material-ui/core/TextField';
 
 import Swal from 'sweetalert2';
@@ -33,7 +34,7 @@ export default class addEvent extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
-        this.onChangeContact = this.onChangeContact.bind(this);
+        this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeImg = this.onChangeImg.bind(this);
         this.onChangeDesc = this.onChangeDesc.bind(this);
         this.onChangeOrd = this.onChangeOrd.bind(this);
@@ -85,60 +86,6 @@ export default class addEvent extends Component {
     validateUser() {
 
 
-        const token = localStorage.getItem('token');
-        axios.get(`http://${config.host}:${config.port}/user/session-validate`, {
-
-                headers:
-                    {
-
-
-                        token: token
-
-                    }
-            }
-        ).then((res) => {
-
-
-                console.log("Validation Response: ", res.data);
-
-
-            }
-        ).catch((err) => {
-
-            if (token === "null") {
-
-                console.log("Token is null Box called");
-
-                swal({
-                    title: "Please Log In",
-                    text: "You have to Log-In First!",
-                    icon: "error",
-                    button: "ok",
-                });
-
-                this.props.history.push('/login');
-            } else {
-
-
-                console.log("the token value is :", token);
-
-                Swal.fire({
-                    position: 'bottom-end',
-                    icon: 'error',
-                    title: 'Session Has Expired',
-                    html:
-                        '<h4>Last Session Details</h4><br/><b>User ID :</b> ' + localStorage.getItem("id") + '<br/>' +
-                        '<b>User Name :</b> ' + localStorage.getItem("username") + '<br/><br/>',
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-
-                this.props.history.push('/login');
-
-
-            }
-
-        });
 
 
     }
@@ -188,10 +135,10 @@ export default class addEvent extends Component {
 
     }
 
-    onChangeContact(e) {
+    onChangeDuration(e) {
         this.setState({
 
-            contact: e.target.value
+            duration: e.target.value
 
 
         });
@@ -389,10 +336,10 @@ export default class addEvent extends Component {
         return (
 
 
-            <div>
+            <div >
                 <Navbar/>
-                <div className="limiter">
-                    <div className="container-login100">
+                <div className="limiter" >
+                    <div className="container-login100" style={{background: "linear-gradient(to right, #FCE4EC, #F3E5F5)" }}>
                         <center><Grid
                             container
                             spacing={0}
@@ -406,11 +353,11 @@ export default class addEvent extends Component {
                                 xl={12}
                                 xs={12}
                             >
-                                <div className="wrap-login100 p-t-85 p-b-20">
+                                <div >
                                     <form onSubmit={this.onUpload} className="login100-form validate-form">
-					<span className="login100-form-title p-b-70">
-						Host Event
-					</span>
+					
+                    <h1 style={{paddingBottom: "50px", fontSize: "80px"}}>	Host Event</h1>
+					
 
 
                                         <div className="wrap-input100 validate-input m-t-5 m-b-35"
@@ -421,9 +368,12 @@ export default class addEvent extends Component {
                                                    value={this.state.name}/>
                                             <span className="focus-input100"></span>
                                         </div>
-                                        <div className="wrap validate-input m-t-5 m-b-35"
-                                             data-validate="Enter username">
-                                            <label className="form-title">Event Date</label>
+
+                                     
+                                        <div className="wrap validate-input" style={{backgroundColor:"#E1BEE7"}} 
+                                             data-validate="Enter Date">
+                                            <label className="form-title" style={{color:"#AB47BC"}}>Event Date</label>
+                                            
                                             <TextField
                                                 required={"true"}
                                                 InputProps={{inputProps: {min: "2020-06-13"}}}
@@ -433,14 +383,20 @@ export default class addEvent extends Component {
                                                 value={this.state.date}
                                                 onChange={this.onChangeDate}
                                                 defaultValue={new Date()}
+                                                
 
-                                                className={"input100"}
+                                                className={"input200"}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}/>
+
+                                               
+                                        
+
                                         </div>
-                                        <div className="wrap validate-input m-t-5 m-b-35" data-validate="Enter Time">
-                                        <label className="form-title">Start Time</label>
+
+                                        <div className="wrap validate-input" data-validate="Enter Time" style={{backgroundColor:"#E1BEE7"}}>
+                                        <label className="form-title" style={{color:"#AB47BC"}}>Start Time</label>
                                             <TextField
                                                 required={"true"}
                                                 id="time"
@@ -470,16 +426,18 @@ export default class addEvent extends Component {
                                             <span className="focus-input100" d></span>
                                         </div>
                                         <div className="wrap-input100 validate-input m-t-5 m-b-35"
-                                             data-validate="Enter Hotline">
-                                            <label className="form-title">Event Hotline</label>
+                                             data-validate="Enter Duration">
+                                            <label className="form-title">Event Duration</label>
                                             <input className="input100" type="text" name="contact"
-                                                   placeholder={"EX: 071 4556235"} required onChange={this.onChangeContact}
-                                                   value={this.state.contact}/>
-                                            <span className="focus-input100"></span>
+                                                   placeholder={"EX: 04"} required onChange={this.onChangeDuration}
+                                                   value={this.state.duration}/>
+                                            <span className="focus-input100"> Hr(s)</span>
                                         </div>
-                                        <div className="wrap validate-input m-b-50" data-validate="Choose Image">
+
+
+                                        <div className="wrap validate-input m-b-50" data-validate="Choose Image" style={{backgroundColor:"#AB47BC"}}>
                                         <label className="form-title"> Event Image (Compulsory)</label><br/>
-                                            <input style={{padding: "50px"}} accept=".gif,.jpg,.jpeg,.png" type="file"
+                                            <input style={{padding: "50px",color:"white"}} accept=".gif,.jpg,.jpeg,.png" type="file"
                                                    name="pass" onChange={this.onChangeImg}/>
 
                                         </div>
@@ -506,7 +464,7 @@ export default class addEvent extends Component {
 							</span>
 
                                                 <a href="#" className="txt2">
-                                                    <Link to={"/home"}> Cancel</Link>
+                                                    <Link to={"/account"}> Cancel</Link>
                                                 </a>
                                             </li>
                                         </ul>
@@ -518,6 +476,7 @@ export default class addEvent extends Component {
                         </Grid></center>
                     </div>
                 </div>
+                <Footer/>
             </div>
 
         )

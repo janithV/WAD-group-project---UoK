@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './account.navbar.componrnt';
+import Footer from "./footer.component";
 
 import swal from 'sweetalert2';
 import config from '../configure';
@@ -84,7 +85,7 @@ const Card2 = props => (
 
 );
 
-export default class events extends Component {
+export default class Dashboard extends Component {
 
 
     constructor(props) {
@@ -126,6 +127,10 @@ export default class events extends Component {
 
     EventList() {
 
+        if(this.state.events.length!=0){
+
+       
+
         return this.state.events.map(entryCurrent => {
 
             return <Card1
@@ -135,10 +140,26 @@ export default class events extends Component {
                 event={entryCurrent}
             />;
 
-        })
+        }) 
+    
+        }else{
+            return(
+                <div>
+
+                     <p className="txt1"> <i class="fas fa-sad-tear"></i>  Sorry, You have not Booked any events yet!</p>
+
+                </div>
+            )
+        }
+
+
     }
 
+
+
     HostList() {
+
+        if(this.state.events.length!=0){
 
         return this.state.hosts.map(entryCurrent => {
 
@@ -151,6 +172,19 @@ export default class events extends Component {
 
         })
     }
+    else{
+
+        return(
+            <div>
+
+                 <p className="txt1"> <i class="fas fa-sad-tear"></i>   Sorry, You have not Hosted any events yet!</p>
+
+            </div>
+        )
+
+    }
+
+}
 
 
 
@@ -216,7 +250,7 @@ export default class events extends Component {
 
                     </div>
 
-                    <h1 style={{paddingBottom: "50px", fontSize: "80px"}}>My Hosted Events</h1>
+                    <h1 style={{paddingBottom: "50px", paddingTop:"30px", fontSize: "80px"}}>My Hosted Events</h1>
                     <div className="row">
 
                         {this.HostList()}
@@ -224,6 +258,8 @@ export default class events extends Component {
 
                     </div>
                 </div>
+
+                <Footer/>
 
 
             </div>

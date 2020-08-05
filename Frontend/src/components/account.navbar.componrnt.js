@@ -23,8 +23,7 @@ export default class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-light bg-light sticky-top">
                 <div className={"container-fluid"}>
-                    <a class="navbar-brand"><img src="https://img.icons8.com/cotton/64/000000/party-baloons.png"/> Event
-                        Planner</a>
+                     <h3>IBACK ENTERTAINMENT</h3>
                     <button className={"navbar-toggler"} type={"button"} data-toggle={"collapse"}
                             data-target={"#navbarResponsive"}>
                         <span className={"navbar-toggler-icon"}></span>
@@ -33,52 +32,32 @@ export default class Navbar extends Component {
 
                         <ul className={"navbar-nav ml-auto"}>
                             <li class={"nav-item"}>
-                                <a className={"nav-link"} href={"#"}><Link to={"/"}><h4>Home</h4></Link></a>
+                                <a className={"nav-link"} href={"#"}><Link to={"/"}><h4><i class="fas fa-home"></i> Home</h4></Link></a>
 
                             </li>
 
                             <li class={"nav-item"}>
-                                <a className={"nav-link"} href={"#"}><Link to={"/account"}><h4>Dashboard</h4></Link></a>
+                                <a className={"nav-link"} href={"#"}><Link to={"/account"}><h4><i class="zmdi zmdi-view-dashboard"></i> Dashboard</h4></Link></a>
 
                             </li>
+                            {/* <li className={"nav-item"}>
+                                <Link to={"/bookings"}> <a className={"nav-link"} href={"#"}><h4><i class="zmdi zmdi-ticket-star"></i> My Bookings</h4></a></Link>
+
+                            </li> */}
+
                             <li className={"nav-item"}>
-                                <Link to={"/events"}> <a className={"nav-link"} href={"#"}><h4>My Bookings</h4></a></Link>
-
-                            </li>
-
-                            <li className={"nav-item"}
-                               >
-                                <Link to={"/hostevent"}> <a className={"btn btn-warning"} href={"#"}><h3>Host an
+                                <Link to={"/account/host"}> <a className={"btn btn-warning"} href={"#"}><h3><i class="fas fa-glass-cheers"></i> Host an
                                     Event</h3></a> </Link>
 
                             </li>
 
-                            <li className="nav-item dropdown">
+                            <li className={"nav-item"}>
+                                <Link to={"/profile"}> <a className={"nav-link"} href={"#"}><h3><i class="fas fa-user-circle"></i> Profile</h3></a> </Link>
 
-
-                                <a
-                                    aria-expanded="false"
-                                    aria-haspopup="true"
-                                    className="nav-link dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    id="navbarDropdownMenuLink"
-                                >
-                                    <h5><b><i className="fas fa-user-circle"/> Account</b></h5>
-
-                                </a>
-
-                                <div
-                                    aria-labelledby="navbarDropdownMenuLink"
-                                    className="dropdown-menu"
-                                    style={{marginLeft: -40}}
-                                >
-
-
-                                    
-
-                                </div>
                             </li>
+
+
+                           
 
                         </ul>
                     </div>
