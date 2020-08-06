@@ -2,7 +2,7 @@ const express = require('express');
 const router= express.Router();
 const conn= require('../../connection');
 
-
+//adding a booking
 router.post('/',(req,res,next)=>{ 
     const booking ={
         bookingid: req.body.name,
@@ -25,6 +25,7 @@ router.post('/',(req,res,next)=>{
     
 });
 
+//retrieving bookings of a customer
 router.get('/:custid',(req,res,next)=>{
     const id =req.params.custid;
 
