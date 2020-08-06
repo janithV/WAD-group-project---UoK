@@ -26,6 +26,8 @@ export default class Navbar extends Component{
     logout() {
       localStorage.clear();
       window.location.href = '/';
+      localStorage.setItem("username" , null);
+      localStorage.setItem("loggedIn" , null);
   }
     render(){
 return(
@@ -44,10 +46,16 @@ return(
           <li><Link to= "/about">About</Link></li>
           <li><Link to ="/allEvents">Events</Link></li>
           <li><Link to ="/contact">Contact</Link></li>
+          <li><Link to ={ localStorage.getItem("loggedIn") ==="loggedIn"? "/account":"/account"}>Account</Link></li>
         </ul>
       </nav>
       {
-        localStorage.getItem("loggedIn") ==="loggedIn"? <a href="#/" className="btn-get-signIn scrollto" onClick={this.logout}>Sign Out</a> : <Link to ="/signIn" className="btn-get-signIn scrollto">Sign In</Link>
+        localStorage.getItem("loggedIn") ==="loggedIn"? <a href="#/" className="btn-get-signIn scrollto" onClick={this.logout}>Sign Out</a>   : <Link to ="/signIn" className="btn-get-signIn scrollto">Sign In</Link>
+        
+      }
+
+{
+      
         
       }
       

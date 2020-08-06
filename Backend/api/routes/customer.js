@@ -42,7 +42,7 @@ router.post('/signUp',(req,res,next)=>{
         
     }
 
-    conn.query("INSERT INTO Customer (firstname,lastname,venue,email,contactno,password,companyname,companyaddress,position)" +
+    conn.query("INSERT INTO Customer (firstname,lastname,email,contactno,password,companyname,companyaddress,position)" +
     "VALUES ('"+Customer.fname+"','"+Customer.lname+"','"+Customer.email+"','"+Customer.contactno+"','"+Customer.password+"','"+Customer.companyName+"','"+Customer.companyAddress+"','"+Customer.position+"')", (err,result)=>{
         if(!err){
             console.log(result.insertId);

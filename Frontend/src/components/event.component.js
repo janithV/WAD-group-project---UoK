@@ -14,10 +14,12 @@ export default class Event extends Component{
 };
 
 componentDidMount() {
-    axios.get('http://localhost:3000/events' + this.props.match.params.eventid).then(res=>{
+
+    axios.get('http://localhost:3000/events/' + this.props.match.params.eventid).then(res=>{
         console.log(res);
         this.setState({ events:res.data });
-    });
+        window.alert("Okay");
+    }).catch(err => console.log(err));
     AOS.init({duration: 1000,
         once:true
     });

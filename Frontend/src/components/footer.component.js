@@ -1,11 +1,36 @@
 import React, {Component} from 'react';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from 'axios';
+
 export default class Event extends Component{
+  state = {
+   
+    eMail:""
+   
+  };
   componentDidMount() {
     AOS.init({duration: 1000,
     once:true});
     }
+    onEmailchange = e => {
+      this.setState({
+          eMail: e.target.value
+      });
+    };
+    handleSubmit = e => {
+      console.log("okay");
+      e.preventDefault()
+       const n = {email:this.state.eMail};
+        
+      axios.post("http://localhost:3000/email", n)
+        .then(res => {console.log(res)
+        console.log("okay");
+      })
+        .catch(err => console.log(err));
+       
+    };
+  
     render(){
         return(
 <footer id="footer">
@@ -16,8 +41,8 @@ export default class Event extends Component{
           <div className="col-lg-6">
             <h4>Join Our Newsletter</h4>
             <p>Get daily updates about our events</p>
-            <form action="" method="post">
-              <input type="email" name="email"/><input type="submit" value="Subscribe"/>
+            <form action="" method="post"onSubmit={this.handleSubmit}>
+              <input type="email" name="email" value={this.state.eMail} onChange={this.onEmailchange} required/><input type="submit" value="Subscribe"/>
             </form>
           </div>
         </div>
