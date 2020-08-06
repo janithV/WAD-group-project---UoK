@@ -24,7 +24,7 @@ export default class LandingPage extends Component{
 
       <div className="section-title">
         <h1>All Events</h1>
-        <p>All the upcomming events</p>
+        <p style={{color:'white', fontSize:'15px'}}>All the upcomming events</p>
       </div>
 
       
@@ -42,7 +42,7 @@ export default class LandingPage extends Component{
 
       <div className="section-title">
         <h1>Recommended Events</h1>
-        <p>Recommended upcomming events for you</p>
+        <p style={{color:'white', fontSize:'15px'}}>Recommended upcomming events for you</p>
       </div>
 
       <GetRecomendedEvents/>

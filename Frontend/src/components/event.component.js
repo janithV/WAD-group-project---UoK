@@ -15,10 +15,10 @@ export default class Event extends Component{
 
 componentDidMount() {
 
-    axios.get('http://localhost:3000/events/' + this.props.match.params.eventid).then(res=>{
+    axios.get('http://localhost:3000/events/' + this.props.match.params.eventId).then(res=>{
         console.log(res);
         this.setState({ events:res.data });
-        window.alert("Okay");
+        //window.alert("Okay");
     }).catch(err => console.log(err));
     AOS.init({duration: 1000,
         once:true
@@ -26,14 +26,15 @@ componentDidMount() {
     }
     render(){
         return(
+          
           <div style={{backgroundImage:`url(${backgroundim4})`,backgroundSize: 'cover',backgroundRepeat:'no-repeat'}}>
         < Navbar/>   <br></br>  <br></br>  <br></br>      <br></br>
             <section id="contact" className="contact" style={{paddingTop:'30px',paddingBottom:'30px'}}>
-                     <br></br>
+                     <br></br> {this.state.events.map(event=> 
             <div className="container" data-aos="fade-up">
         
               <div className="section-title">
-                <h1 style={{color:  'white'}}>Info Studio</h1>
+                     <h1 style={{color:  'white'}}>{event.name}</h1>
                 
               </div>
         
@@ -44,32 +45,36 @@ componentDidMount() {
                     <div className="address">
                       <i className="icofont-google-map"></i>
                       <h4>Location:</h4>
-                      <p>34/A, Department of Industrial Management, University of Kelaniya</p>
+                      <p>{event.venue}</p>
                     </div>
         
-                    <div className="email">
+                  { /* <div className="email">
                       <i className="icofont-envelope"></i>
                       <h4>Email:</h4>
                       <p>ibackEntertainment@gmail.com</p>
-                    </div>
+                     </div>*/}
         
-                    <div className="phone">
-                      <i className="icofont-phone"></i>
-                      <h4>Call:</h4>
-                      <p>0743432423</p>
-                    </div>
-        
-                    <div className="date">
-                        <i className="icofont-calendar"></i>
-                        <h4>Date:</h4>
-                        <p>3<sup>rd</sup> of july 2020</p>
-                      </div>
                     
+
                     <div className="date">
                         <i className="icofont-clock-time"></i>
                         <h4>Time:</h4>
-                        <p>3.00 PM</p>
+                        <p>{event.starttime}</p>
                     </div>
+                     
+                    <div className="date">
+                        <i className="icofont-calendar"></i>
+                        <h4>Date:</h4>
+                        <p>{event.date}</p>
+                      </div>
+                    
+                    <div className="phone">
+                      <i className="icofont-stopwatch"></i>
+                      <h4>Duration:</h4>
+                      <p>{event.duration}</p>
+                    </div>
+                    
+                   
         
                     <div className="text-center" style={{paddingTop: "50px"}}>
                     {
@@ -87,21 +92,14 @@ componentDidMount() {
                           
                           </div>
                         <div style={{textAlign: 'justify'}}>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, illo reiciendis iste omnis libero commodi ullam repudiandae 
-                            voluptates neque laudantium molestiae accusantium porro impedit rem eligendi tenetur illum placeat consequuntur.
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, illo reiciendis iste omnis libero commodi ullam repudiandae 
-                            voluptates neque laudantium molestiae accusantium porro impedit rem eligendi tenetur illum placeat consequuntur.
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, illo reiciendis iste omnis libero commodi ullam repudiandae 
-                            voluptates neque laudantium molestiae accusantium porro impedit rem eligendi tenetur illum placeat consequuntur.
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, illo reiciendis iste omnis libero commodi ullam repudiandae 
-                            voluptates neque laudantium molestiae accusantium porro impedit rem eligendi tenetur illum placeat consequuntur.
+                        {event.description}
                         </div>
                     </div>
                 </div>
         
               </div>
         
-            </div>
+            </div>)}
             <br></br></section>
             <Footer/>
           </div>
