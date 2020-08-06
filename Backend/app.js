@@ -4,6 +4,7 @@ const bodyParser=require('body-parser');
 
 const eventsRouter= require('./api/routes/events');
 const customerRouter= require('./api/Routes/customer');
+const bookingRouter=require('./api/Routes/booking');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.use((req,res,next)=>{
 
 app.use('/events',eventsRouter);
 app.use('/customer',customerRouter);
+app.use('/booking',bookingRouter);
 
 //error handling
 app.use((req,res,next)=>{

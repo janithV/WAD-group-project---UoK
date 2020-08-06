@@ -77,7 +77,7 @@ router.post('/deleteEvent/:eventId',(req,res,next)=>{
     
 });
 
-//localhost:3000/events/myEvents/(custId)
+//localhost:3000/events/myEvents/(custId) //retrieving the hosted events
 router.get('/myHostedEvents/:custId',(req,res,next)=>{
     const id =req.params.custId; 
 
