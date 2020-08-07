@@ -214,6 +214,24 @@ export default class Dashboard extends Component {
 
 
         })
+
+// bookings
+        
+        axios.get(`http://${config.host}:${config.port}/booking/`+ localStorage.getItem("cusid")
+        ).then(res => {
+            this.setState({
+
+                events: res.data
+
+            })
+
+            console.log("Entries are ", this.state.events);
+
+        }).catch(err => {
+            console.log(err);
+
+
+        })
     }
 
 

@@ -37,11 +37,11 @@ export default class addEvent extends Component {
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeImg = this.onChangeImg.bind(this);
         this.onChangeDesc = this.onChangeDesc.bind(this);
-        this.onChangeOrd = this.onChangeOrd.bind(this);
-        this.validateUser = this.validateUser.bind(this);
+        this.onChangeVenue = this.onChangeVenue.bind(this);
+      
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onUpload = this.onUpload.bind(this);
+       
 
         this.onForgotPassword = this.onForgotPassword.bind(this);
 
@@ -55,7 +55,10 @@ export default class addEvent extends Component {
             img: null,
             imgCloud: '',
             organizer: '',
-            today: ''
+            today: '',
+            venue: '',
+            duartation:''
+
 
 
         }
@@ -70,8 +73,7 @@ export default class addEvent extends Component {
 
     componentDidMount() {
 
-        this.validateUser();
-
+        
         this.setState({
 
             today: getToday()
@@ -82,14 +84,7 @@ export default class addEvent extends Component {
 
     }
 
-    //session validation
-    validateUser() {
-
-
-
-
-    }
-
+    
 
     onChangeName(e) {
         this.setState({
@@ -159,10 +154,10 @@ export default class addEvent extends Component {
 
     }
 
-    onChangeOrd(e) {
+    onChangeVenue(e) {
         this.setState({
 
-            organizer: e.target.value
+            venue: e.target.value
 
 
         });
@@ -170,8 +165,7 @@ export default class addEvent extends Component {
 
     }
 
-    //handle sign in
-
+   
     async onUpload(e) {
 
         e.preventDefault();
@@ -201,10 +195,9 @@ export default class addEvent extends Component {
         formData.append('img', this.state.img);
 
 
-       
-        await axios.post(`http://${config.host}:${config.port}/event/upload`, formData, {
+        let token = localStorage.getItem('token')
 
-           
+        await axios.post(`http://${config.host}:${config.port}/events/upload`, formData, {
             onUploadProgress: ProgressEvent => {
 
                 this.state.uploadPercentage = 100 - parseInt((Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)))
@@ -229,35 +222,54 @@ export default class addEvent extends Component {
 
             console.log("response is: ", res.data);
 
-            Swal.fire({
-                title: "Upload Successfull",
-               
-                icon: "success",
-                // buttons: true,
-                dangerMode: false,
-            })
+            if (res.data.URL) {
 
-           
+                this.setState({
 
-        }).catch((err => {
+                    imgCloud: res.data.URL
 
 
+                });
 
+                this.onSubmit();
+
+
+            }
+            if (res.data.msg) {
                 Swal.fire({
                     title: "Upload Interrupted",
-                    text: "Selected File is not an Image or in unsupported file format or Upload is interrupted Due to Server Error, Upload failed! ",
+                    text: res.data.msg,
                     icon: "error",
-                    // buttons: true,
+
                     dangerMode: true,
                 })
 
-            }))
+
+            }
+
+        }).catch((err => {
+
+           
+           
+
+                Swal.fire({
+                    title: "Event Hosting Interrupted",
+                    text: "Session has Expired Please Log in! ",
+                    icon: "error",
+
+                    dangerMode: true,
+                })
+
+          
 
 
-        
+        }))
 
 
     }
+
+
+   
 
     onSubmit() {
 
@@ -282,7 +294,7 @@ export default class addEvent extends Component {
         const Entry = {
 
             name: this.state.name,
-            time: this.state.time,
+            startTime: this.state.time,
             date: this.state.date,           
             description: this.state.description,
             contact: this.state.contact,
@@ -427,11 +439,20 @@ export default class addEvent extends Component {
                                         </div>
                                         <div className="wrap-input100 validate-input m-t-5 m-b-35"
                                              data-validate="Enter Duration">
-                                            <label className="form-title">Event Duration</label>
+                                            <label className="form-title">Event Duration Hr(s)</label>
                                             <input className="input100" type="text" name="contact"
                                                    placeholder={"EX: 04"} required onChange={this.onChangeDuration}
                                                    value={this.state.duration}/>
-                                            <span className="focus-input100"> Hr(s)</span>
+                                            <span className="focus-input100"> </span>
+                                        </div>
+
+                                        <div className="wrap-input100 validate-input m-t-5 m-b-35"
+                                             data-validate="Enter Venue">
+                                            <label className="form-title">Venue</label>
+                                            <input className="input100" type="text" name="contact"
+                                                   placeholder={"EX: Galadari Hotel, Colombo"} required onChange={this.onChangeVenue}
+                                                   value={this.state.venue}/>
+                                            <span className="focus-input100"> </span>
                                         </div>
 
 

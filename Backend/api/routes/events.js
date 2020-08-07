@@ -1,6 +1,16 @@
 const conn= require('../../connection')
 const express = require('express');
 const router=express.Router();
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+    cloud_name: "fashionistaimage",
+    api_key: "822148795585776",
+    api_secret: "1FbjgHZVhCiU_XRO-rHY7SNE4v0"
+  
+  
+  });
+
 
 //localhost:3000/events
 router.get('/',(req,res,next)=>{
@@ -39,7 +49,8 @@ router.post('/addEvent',(req,res,next)=>{
         description: req.body.description,
         startTime: req.body.startTime,
         duration: req.body.duration,
-        customerId: req.body.customerId
+        customerId: req.body.customerId,
+        img = req.body.img
         
     }
 
@@ -92,5 +103,42 @@ router.get('/myHostedEvents/:custId',(req,res,next)=>{
     })
     
 });
+
+
+router.post('/upload', (req, res) => {
+
+
+    if (req.files === null) {
+      return res.status(200).json({ msg: "No file is Selected to upload. Please select a file first!" })
+    }
+    const file = req.files.img;
+    console.log("uplod file is:", file);
+  
+  
+    cloudinary.uploader.upload(file.tempFilePath, function (err, result) {
+  
+      if (err) {
+  
+        console.log("Error is :", err);
+  
+        return res.status(400).json({ msg: "Server Error not Uploaded" })
+  
+      } else {
+        console.log("Result is :", res);
+  
+  
+  
+  
+        console.log("response URL: ", result.url);
+        res.status(200).json({ URL: result.url })
+  
+      }
+  
+  
+    });
+  
+  
+  
+  })
 
 module.exports=router;
