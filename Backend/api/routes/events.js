@@ -47,7 +47,7 @@ router.post('/addEvent',(req,res,next)=>{
         date: req.body.date,
         venue: req.body.venue,
         description: req.body.description,
-        url:req.body.url,
+        url:req.body.img,
         startTime: req.body.startTime,
         duration: req.body.duration,
         customerId: req.body.customerId,
