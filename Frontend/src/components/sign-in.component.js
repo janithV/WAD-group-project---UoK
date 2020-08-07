@@ -5,6 +5,8 @@ import "../assets/css/sign-in.css";
 import "aos/dist/aos.css";
 import axios from 'axios';
 import backgroundim1 from '../assets/img/images1.jpg'
+//import SweetAlert from 'react-bootstrap-sweetalert';
+import swal from '@sweetalert/with-react';
 
 export default class About extends Component{
     state = {
@@ -36,6 +38,7 @@ export default class About extends Component{
         .then(res => {
             console.log(res.data.message);
             if(res.data.message === "Verified"){
+           
                 console.log("Successfull");
                 localStorage.setItem("cusid" , res.data.CustomerID);
                 console.log("Cus Id is", localStorage.getItem("cusid"));
@@ -45,8 +48,10 @@ export default class About extends Component{
                 window.location.reload();
             }
         else{
-            window.alert("Pls Enter the correct Login Details")
+            
+            //window.alert("Pls Enter the correct Login Details")
             console.log("not verified");
+            swal("Good job!", "You clicked the button!", "success");
         }
         })
         .catch(err => {console.log("Unsucessfull"); 

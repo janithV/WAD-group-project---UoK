@@ -5,12 +5,12 @@ const conn= require('../../connection');
 //adding a booking
 router.post('/',(req,res,next)=>{ 
     const booking ={
-        bookingid: req.body.name,
-        eventid: req.body.date,
-        nooftickets: req.body.venue
+        customerid: req.body.customerid,
+        eventid: req.body.eventid,
+        nooftickets: req.body.nooftickets
     }
 
-    conn.query("INSERT INTO booking (customerid,eventid,nooftickets) VALUES ('"+booking.bookingid+"','"+booking.eventid+"','"+booking.nooftickets+"')", (err,result)=>{
+    conn.query("INSERT INTO booking (customerid,eventid,nooftickets) VALUES ('"+booking.customerid+"','"+booking.eventid+"','"+booking.nooftickets+"')", (err,result)=>{
         if(!err){
             console.log(result.insertId);
             res.status(201).json({
