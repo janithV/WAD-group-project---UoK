@@ -50,7 +50,7 @@ router.post('/addEvent',(req,res,next)=>{
         startTime: req.body.startTime,
         duration: req.body.duration,
         customerId: req.body.customerId,
-        img = req.body.img
+       
         
     }
 

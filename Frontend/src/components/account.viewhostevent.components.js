@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { Grid } from '@material-ui/core';
 import config from '../configure';
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -90,10 +91,10 @@ export default class ViewHEvent extends Component {
     
        
         this.onChangeDiscription = this.onChangeDiscription.bind(this)
-        this.onChangeName = this.onChangeName.bind(this)
+      
         this.uploadImage = this.uploadImage.bind(this)
         this.showImage = this.showImage.bind(this)     
-        this.getHost = this.getHost.bind(this)
+        this.getEvent = this.getEvent.bind(this)
 
 
 
@@ -132,17 +133,17 @@ export default class ViewHEvent extends Component {
 
     componentDidMount() {
 
-        this.getOrders();
-        this.getProduct();
+     
+        this.getEvent();
 
 
     }
 
     //get the product details
 
-    getHost() {
+    getEvent() {
       
-        axios.get(`http://${config.host}:${config.port}/account/host/view/` + this.props.match.params.id, {
+        axios.get(`http://${config.host}:${config.port}/events/` + this.props.match.params.id, {
          
         }).then(res => {
 
@@ -534,57 +535,11 @@ export default class ViewHEvent extends Component {
                 <Navbar />
 
                 <div style={{ padding: "20px" }}>
-                    <h6 style={{ color: "#78909C" }}><i class="fas fa-info-circle"></i>  Store Manager Portal / Products / View Product</h6>
+                    <h6 style={{ color: "#78909C" }}><i class="fas fa-info-circle"></i>  Account / Events / View Event</h6>
                 </div>
 
-                {/* cards */}
-                <div clss="Managercard" id="tab-cards">
-                    <div className="managerStat">
-                        <div
-                            className="container "
-                            style={{ padding: '15px' }}
-                        >
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <div className="card-counter primary">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        <span className="count-numbers">{this.state.orders.length}</span>
-                                        <span className="count-name"> Purchase Orders</span>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-3">
-                                    <div className="card-counter danger">
-                                        <i className="fas fa-dollar-sign" />
-                                        <span className="count-numbers">Rs. {this.state.price * this.state.orders.length}</span>
-                                        <span className="count-name"> Product Revenue</span>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-3">
-                                    <div className="card-counter success">
-                                        <i class="fas fa-comments"></i>
-                                        <span className="count-numbers">{this.state.commentArray.length}</span>
-                                        <span className="count-name"> User Comments</span>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-3">
-                                    <div className="card-counter" style={{ backgroundColor: "#FFC107" }}>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span className="count-numbers">{this.state.rating.length}</span>
-                                        <span className="count-name"> Rates</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                {/* cards end */}
+              
+                
 
                 <div >
 
@@ -720,136 +675,121 @@ export default class ViewHEvent extends Component {
                                     <div class="container">
                                         <div class="signup-content">
                                             <div class="signup-form" style={{ margin: "20px" }}>
-                                                <h2 style={{ paddingBottom: "60px" }}
-                                                    class="form-title">Update Product</h2>
-                                                <form class="register-form" onSubmit={this.onSubmit}>
-                                                    {/* product code */}
-                                        Product Code
-                                        <div class="form-group">
-                                                        <label for="code"><i class="zmdi zmdi-tag-more"></i></label>
-                                                        <input type="text" onChange={this.onChangeProductCode} value={this.state.productCode} required name="code" id="productCode" placeholder="ex : P001" />
-                                                    </div>
-                                                    {/* product name */}
-                                        Product Name
-                                        <div class="form-group">
-                                                        <label for="name"><i class="zmdi zmdi-info-outline"></i></label>
-                                                        <input type="text" name="name" id="productName" placeholder="Product Name" onChange={this.onChangeProductName} value={this.state.productName} required />
-                                                    </div>
+                                            <h1 style={{paddingBottom: "50px", fontSize: "80px"}}>	Update Event</h1>
+					
+                                            <form onSubmit={this.onUpload} className="login100-form validate-form">
 
-                                                    {/* category */}
-                                                    <div class="form-group" id="category">
-                                                        Category
-                                <div class="input-group mb-3" >
-                                                            <div class="input-group-prepend">
-                                                                <label class="input-group-text" for="categoryName"></label>
-                                                            </div>
-                                                            <select ref="ctegoryInput" class="custom-select" id="categoryName"
-                                                                value={this.state.categoryName}
-                                                                onChange={this.onChangeCategoryName}
+                    <div className="wrap-input100 validate-input m-t-5 m-b-35"
+                         data-validate="Enter username">
+                        <label className="form-title">Event Name</label>
+                        <input className="input100" type="text" name="username"
+                               placeholder={"EX: Vertigo"} required onChange={this.onChangeName}
+                               value={this.state.name}/>
+                        <span className="focus-input100"></span>
+                    </div>
 
-                                                            >
-                                                                <option value="">Choose a Category</option>
+                 
+                    <div className="wrap validate-input" style={{backgroundColor:"#E1BEE7"}} 
+                         data-validate="Enter Date">
+                        <label className="form-title" style={{color:"#AB47BC"}}>Event Date</label>
+                        
+                        <TextField
+                            required={"true"}
+                            InputProps={{inputProps: {min: "2020-06-13"}}}
+                            id="date"
+                            label=""
+                            type="date"
+                            value={this.state.date}
+                            onChange={this.onChangeDate}
+                            defaultValue={new Date()}
+                            
+
+                            className={"input200"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}/>
+
+                           
+                    
+
+                    </div>
+
+                    <div className="wrap validate-input" data-validate="Enter Time" style={{backgroundColor:"#E1BEE7"}}>
+                    <label className="form-title" style={{color:"#AB47BC"}}>Start Time</label>
+                        <TextField
+                            required={"true"}
+                            id="time"
+                            label=""
+                            type="time"
+                            defaultValue="00:00"
+                            value={this.state.time}
+                            onChange={this.onChangeTime}
+                            className={"input100"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            inputProps={{
+                                step: 300, // 5 min
+                            }}
+                        />
+
+                    </div>
+
+                    <div className="wrap-input100 validate-input m-t-5 m-b-35"
+                         data-validate="Enter username">
+                        <label className="form-title">Event Description</label>
+                        <textarea className="input100" name="username"
+                                  placeholder={"EX: The best event of the month. Enjoy the life!"}
+                                  required onChange={this.onChangeDesc}
+                                  value={this.state.description}/>
+                        <span className="focus-input100" d></span>
+                    </div>
+                    <div className="wrap-input100 validate-input m-t-5 m-b-35"
+                         data-validate="Enter Duration">
+                        <label className="form-title">Event Duration Hr(s)</label>
+                        <input className="input100" type="text" name="contact"
+                               placeholder={"EX: 04"} required onChange={this.onChangeDuration}
+                               value={this.state.duration}/>
+                        <span className="focus-input100"> </span>
+                    </div>
+
+                    <div className="wrap-input100 validate-input m-t-5 m-b-35"
+                         data-validate="Enter Venue">
+                        <label className="form-title">Venue</label>
+                        <input className="input100" type="text" name="contact"
+                               placeholder={"EX: Galadari Hotel, Colombo"} required onChange={this.onChangeVenue}
+                               value={this.state.venue}/>
+                        <span className="focus-input100"> </span>
+                    </div>
 
 
+                    <div className="wrap validate-input m-b-50" data-validate="Choose Image" style={{backgroundColor:"#AB47BC"}}>
+                    <label className="form-title"> Event Image (Compulsory)</label><br/>
+                        <input style={{padding: "50px",color:"white"}} accept=".gif,.jpg,.jpeg,.png" type="file"
+                               name="pass" onChange={this.onChangeImg}/>
 
+                    </div>
 
-                                                                {
-                                                                    this.state.categories.map(category => {
-                                                                        return <option value={category}>{category}</option>;
-
-                                                                    })
-
-
-
-
-                                                                }
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    {/* price */}
-                                        Price
-                                        <div class="form-group">
-
-                                                        <label for="price"><i class="zmdi zmdi-money-box"></i></label>
-                                                        <input type="text" name="name" id="price" placeholder="Product Price" onChange={this.onChangePrice} value={this.state.price} required />
-                                                    </div>
-                                                    {/* color */}
-                                        Color
-                                        <div class="form-group" >
-                                                        <label for="color"><i class="zmdi zmdi-format-color-fill"></i></label>
-                                                        <input type="text" name="name" id="color" placeholder="Product Color" onChange={this.onChangeColor} value={this.state.color} required />
-                                                    </div>
-                                                    {/* size */}Size
-                                        <div class="form-group">
-                                                        <label for="size"><i class="zmdi zmdi-fullscreen-alt"></i></label>
-                                                        <input type="text" name="size" id="productName" placeholder="Product Size" onChange={this.onChangeSize} value={this.state.size} required />
-                                                    </div>
-                                                    {/* quantity */}
-                                        Stock Quantity
-                                        <div class="form-group">
-                                                        <label for="quantity"><i class="zmdi zmdi-storage"></i></label>
-                                                        <input type="text" name="name" id="quantity" placeholder="Product Quantity" onChange={this.onChangeQuantity} value={this.state.quantity} required />
-                                                    </div>
-
-                                                    {/* discount */}
-                                        Discount ( % )
-                                        <div class="form-group">
-                                                        <label for="discount"><i class="zmdi zmdi-label"></i></label>
-                                                        <input type="text" name="name" id="discount" placeholder="Product Discount ( Do not enter % sign at the end )" onChange={this.onChangeDiscount} value={this.state.discount} />
-                                                    </div>
-
-                                                    {/* discription */}
-                                        Description
-                                        <div class="form-group">
-                                                        <label for="discription"></label>
-                                                        <textarea name="name" id="discription"
-                                                            rows="10" cols="35"
-                                                            placeholder="Product Discription" onChange={this.onChangeDiscription} value={this.state.description} />
-                                                    </div>
-
+<center>
 
 
                                                     <div class="form-group form-button">
 
-                                                        <a onClick={resetButtons}> <input type="button" name="signup" id="resetupdate" style={{ display: "none" }} class="btn btn-danger" value="Cancel" /></a>
-                                                        <input type="submit" name="signup" id="updateButton" class="form-submit" style={{ display: "none" }} value="Update" />
+                                                        
+                                                        <input type="submit" name="signup" id="updateButton" class="btn btn-success" style={{ display: "none", paddingRight:"60px" , paddingLeft:"60px", marginTop:"30px"}} value="Update" />
+                                                        <a onClick={resetButtons}> <input type="button" name="signup" id="resetupdate" style={{ display: "none", padding:"10px"  ,marginTop:"30px"}} class="btn btn-danger" value="Cancel" /></a>
 
 
                                                     </div>
+                                                    </center>
 
 
                                                 </form>
                                             </div>
-                                            <div class="signup-image">
+                                            
 
 
-
-
-                                                <div className="shadow-box-example z-depth-5" style={{ backgroundImage: "linear-gradient(to bottom right, #ECEFF1, #FAFAFA)", padding: "20px" }}>
-                                                    <button class="btn btn-outline-info" style={{ margin: "5px", marginLeft: "85%", }} onClick={this.showHelp}><i class="zmdi zmdi-help"></i></button>
-                                                    <h5><i class="zmdi zmdi-image-alt"></i> Image Settings</h5>
-                                                    <div className="input-group">
-
-                                                        <div className="input-group-prepend" >
-
-
-                                                        </div>
-                                                        
-                                                           
-                                                       
-                                                    </div><br />
-
-                                                </div>
-
-                                                <figure>
-
-
-
-                                                </figure>
-
-
-                                            </div>
+                                            
 
                                         </div>
 
@@ -865,75 +805,7 @@ export default class ViewHEvent extends Component {
 
                     </Grid>
 
-                    <Grid
-                        container
-                        spacing={0}
-                    >
-                        <Grid
-                            item
-                            lg={6}
-                            sm={6}
-                            xl={6}
-                            xs={12}
-                        >
-                            {/* orders */}
-
-                            <div className="container" style={{ marginTop: -200 }} id="tab1" >
-
-                                <h1>Orders</h1>
-                                <table className="table" style={{ color: "#546E7A" }}>
-
-                                    <thead style={{ color: "#3F51B5" }}>
-                                        <tr>
-
-                                            <th scope="col">Oder ID</th>
-                                            <th scope="col">User ID</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Payment Method</th>
-
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.orderList()}
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                        </Grid>
-
-                        <Grid
-                            item
-                            lg={6}
-                            sm={6}
-                            xl={6}
-                            xs={12}
-                        >
-                            {/* Coments */}
-
-                            <div className="container" style={{ marginTop: -5, backgroundColor: "#29B6F6" }} id="tab2" >
-
-                                <h1>Comments</h1>
-                                <table className="table" style={{ color: "white" }}>
-
-                                    <thead style={{ color: "#3F51B5" }}>
-
-                                    </thead>
-                                    <tbody>
-                                        {this.CommentList()}
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                        </Grid>
-
-
-
-
-                    </Grid>
+                  
                 </div>
 
 

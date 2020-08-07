@@ -40,7 +40,7 @@ function App() {
       <Route path = "/signUp" exact component={SignUp}/>
       <Route path = "/account" exact component={Account}/>
       <Route path = "/account/host" exact component={HostEvent}/>
-      <Route path = "/events/host/view/:id" exact component={ViewHEvent}/>
+      <Route path = "/account/event/view/:id" exact component={ViewHEvent}/>
       
     
     </Router>

@@ -15,7 +15,7 @@ const Card1 = props => (
 
     <div className="col-xs-4 col-sm-4">
         <div className="card">
-            <a className="img-card" href="http://www.fostrap.com/">
+            <a className="img-card" >
                 <img src={props.event.url}/>
             </a>
             <br/>
@@ -44,9 +44,9 @@ const Card1 = props => (
                 </div>
             </div>
             <div className="card-read-more">
-                <a className="btn btn-link btn-block" href="#">
+            <Link to= {"/account/event/view/" + props.event.eventid} >   <a className="btn btn-link btn-block" href="#">
                     View More
-                </a>
+                </a></Link>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@ const Card2 = props => (
 
     <div className="col-xs-12 col-sm-6">
         <div className="card">
-            <a className="img-card" href="http://www.fostrap.com/">
+            <a className="img-card" >
                 <img src={props.event.img}/>
             </a>
             <br/>
@@ -82,9 +82,9 @@ const Card2 = props => (
                 </div>
             </div>
             <div className="card-read-more">
-                <a className="btn btn-link btn-block" href="#">
+             <Link to= {"/account/event/view/" + props.event.eventid} >   <a className="btn btn-link btn-block" href="#">
                     View More
-                </a>
+                </a></Link>
             </div>
         </div>
     </div>
