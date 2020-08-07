@@ -58,7 +58,7 @@ router.post('/signUp',(req,res,next)=>{
     
 });
 
-router.get('/signIn', (req,res,next)=>{
+router.get('/login/signIn', (req,res,next)=>{
     const email=req.body.email;
     const password=req.body.password;
 
@@ -69,7 +69,7 @@ router.get('/signIn', (req,res,next)=>{
                 for(var i=0; i <rows.length; i++){
                     if(email === rows[i].email && password=== rows[i].password){
                         //bool=true;
-                        res.status(200).json({
+                        res.status(200).send({
                             message: "Verified",
                             CustomerID : rows[i].customerid
                         });
@@ -92,6 +92,6 @@ router.get('/signIn', (req,res,next)=>{
     });
 
 
-})
+});
 
 module.exports=router;
