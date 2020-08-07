@@ -47,11 +47,7 @@ export default class SignUp extends Component{
           lname:this.state.lName,
           email:this.state.eMail,
           contactno: this.state.contactNum,
-         // companyName: null,
-      //  companyAddress: null,
-      //  position: null,
-          //fname:this.state.userName,
-            password:this.state.passWord,
+          password:this.state.passWord,
         };
 
       axios.post("http://localhost:3000/customer/signUp", Customer)

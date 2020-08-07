@@ -32,7 +32,7 @@ function App() {
     <Router>
       
       <Route path = "/" exact component={LandingPage}/>
-      <Route path = "/event/:eventid" exact component={Event}/>
+      <Route path = "/event/:eventId" exact component={Event}/>
       <Route path = "/contact" exact component={Contact}/>
       <Route path = "/allEvents" exact component={AllEvents}/>
       <Route path = "/about" exact component={About}/>

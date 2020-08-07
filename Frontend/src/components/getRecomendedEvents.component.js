@@ -26,7 +26,7 @@ export default class GetRecomendedEvents extends Component{
             <div className="iconbox">
               <div>
                     <img src={event.url} alt="" className="img-fluid" style={{width:'100%'}}/>
-                    <h4><Link to ={'/events/' + event.eventid}>{event.name}</Link></h4>
+                    <h4><Link to ={'/event/' + event.eventid}>{event.name}</Link></h4>
                     <i className="icofont-google-map" style={{padding:30}} >{event.venue}</i> <br></br>
                     <i className="icofont-calendar"style={{padding:30}}>{event.date}</i>
             </div>
