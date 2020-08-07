@@ -29,7 +29,8 @@ router.post('/',(req,res,next)=>{
 router.get('/:custid',(req,res,next)=>{
     const id =req.params.custid;
 
-    conn.query("SELECT * from booking where customerid =?",[id], (err,rows,fields)=>{
+    conn.query("SELECT event.name, event.date, event.venue, event.description, event.url, event.starttime, event.duration FROM event INNER JOIN booking on booking.eventid=event.eventid WHERE booking.customerid= ?",[id],
+     (err,rows,fields)=>{
         if(!err){
             console.log(rows);
             res.status(200).send(rows);

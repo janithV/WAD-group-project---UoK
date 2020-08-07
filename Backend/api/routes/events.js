@@ -47,6 +47,7 @@ router.post('/addEvent',(req,res,next)=>{
         date: req.body.date,
         venue: req.body.venue,
         description: req.body.description,
+        url:req.body.url,
         startTime: req.body.startTime,
         duration: req.body.duration,
         customerId: req.body.customerId,
@@ -54,7 +55,7 @@ router.post('/addEvent',(req,res,next)=>{
         
     }
 
-    conn.query("INSERT INTO event (name,date,venue,description,starttime,duration) VALUES ('"+event.name+"','"+event.date+"','"+event.venue+"','"+event.description+"','"+event.startTime+"','"+event.duration+"')", (err,result)=>{
+    conn.query("INSERT INTO event (name,date,venue,description,url,starttime,duration) VALUES ('"+event.name+"','"+event.date+"','"+event.venue+"','"+event.description+"','"+event.url+"','"+event.startTime+"','"+event.duration+"')", (err,result)=>{
         if(!err){
             console.log(result.insertId);
             res.status(201).json({
