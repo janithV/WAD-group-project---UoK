@@ -28,12 +28,17 @@ export default class About extends Component{
             email :this.state.email,
             password :this.state.password
         };
-        
-      axios.get("http://localhost:3000/customer/signIn" , C)
+
+        console.log(this.state.email);
+        console.log(this.state.password);
+
+      axios.post("http://localhost:3000/customer/login/signIn" , C)
         .then(res => {
             console.log(res.data.message);
             if(res.data.message === "Verified"){
                 console.log("Successfull");
+                localStorage.setItem("cusid" , res.data.CustomerID);
+                console.log("Cus Id is", localStorage.getItem("cusid"));
                 localStorage.setItem("username" , this.state.userName);
                 localStorage.setItem("loggedIn" , "loggedIn");
                 this.props.history.push('/');

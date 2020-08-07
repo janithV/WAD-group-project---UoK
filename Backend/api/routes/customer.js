@@ -58,9 +58,15 @@ router.post('/signUp',(req,res,next)=>{
     
 });
 
-router.get('/login/signIn', (req,res,next)=>{
+router.post('/login/signIn', (req,res,next)=>{
+
     const email=req.body.email;
     const password=req.body.password;
+
+    console.log("Verification called");
+
+    console.log(email);
+    console.log(password);
 
     conn.query("SELECT * from Customer where email = ? AND password =? ",[email,password],(err,rows,fields)=>{
         if(!err){

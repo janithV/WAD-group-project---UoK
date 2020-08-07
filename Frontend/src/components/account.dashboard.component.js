@@ -13,10 +13,10 @@ import "../assets/css/main.portal.css"
 //card component
 const Card1 = props => (
 
-    <div className="col-xs-12 col-sm-6">
+    <div className="col-xs-4 col-sm-4">
         <div className="card">
             <a className="img-card" href="http://www.fostrap.com/">
-                <img src={props.event.img}/>
+                <img src={props.event.url}/>
             </a>
             <br/>
             <div className="card-content">
@@ -34,7 +34,13 @@ const Card1 = props => (
                 </div>
 
                 <div className="">
-                    <b>Start Time: </b> {props.event.time}
+                    <b>Start Time: </b> {props.event.starttime}
+                </div>
+                <div className="">
+                    <b>Duration: </b> {props.event.duration}
+                </div>
+                <div className="">
+                    <b>Venue: </b> {props.event.venue}
                 </div>
             </div>
             <div className="card-read-more">
@@ -121,6 +127,7 @@ export default class Dashboard extends Component {
     componentDidMount() {
 
         this.getAllEntries();
+        
 
 
     }
@@ -159,7 +166,7 @@ export default class Dashboard extends Component {
 
     HostList() {
 
-        if(this.state.events.length!=0){
+        if(this.state.hosts.length!=0){
 
         return this.state.hosts.map(entryCurrent => {
 
@@ -190,15 +197,17 @@ export default class Dashboard extends Component {
 
     getAllEntries() {
 
-        axios.get(`http://${config.host}:${config.port}/event/`
+        // hosts
+
+        axios.get(`http://${config.host}:${config.port}/events/myHostedEvents/`+ localStorage.getItem("cusid")
         ).then(res => {
             this.setState({
 
-                events: res.data.data
+                hosts: res.data
 
             })
 
-            console.log("Entries are ", this.state.entries);
+            console.log("Entries are ", this.state.hosts);
 
         }).catch(err => {
             console.log(err);
