@@ -12,6 +12,45 @@ cloudinary.config({
   });
 
 
+  router.post('/upload', (req, res) => {
+
+    console.log("Came to uploazd");
+    console.log("uplod file is:", req.files.img);
+  
+
+    if (req.files === null) {
+      return res.status(200).json({ msg: "No file is Selected to upload. Please select a file first!" })
+    }
+    const file = req.files.img;
+    console.log("uplod file is:", file);
+  
+  
+    cloudinary.uploader.upload(file.tempFilePath, function (err, result) {
+  
+      if (err) {
+  
+        console.log("Error is :", err);
+  
+        return res.status(400).json({ msg: "Server Error not Uploaded" })
+  
+      } else {
+        console.log("Result is :", res);
+  
+  
+  
+  
+        console.log("response URL: ", result.url);
+        res.status(200).json({ URL: result.url })
+  
+      }
+  
+  
+    });
+  
+  
+  
+  })
+
 //localhost:3000/events
 router.get('/',(req,res,next)=>{
     conn.query("SELECT * from event", (err,rows,fields)=>{
@@ -42,6 +81,8 @@ router.get('/:eventId',(req,res,next)=>{
 
 //localhost:3000/events/addEvent
 router.post('/addEvent',(req,res,next)=>{ 
+
+    console.log("came to add event");
     const event ={
         name: req.body.name,
         date: req.body.date,
@@ -106,42 +147,6 @@ router.get('/myHostedEvents/:custId',(req,res,next)=>{
 });
 
 
-router.post('/upload', (req, res,next) => {
 
-    console.log("Came here");
-
-
-    if (req.files === null) {
-      return res.status(200).json({ msg: "No file is Selected to upload. Please select a file first!" })
-    }
-    const file = req.files.img;
-    console.log("uplod file is:", file);
-  
-  
-    cloudinary.uploader.upload(file.tempFilePath, function (err, result) {
-  
-      if (err) {
-  
-        console.log("Error is :", err);
-  
-        return res.status(400).json({ msg: "Server Error not Uploaded" })
-  
-      } else {
-        console.log("Result is :", res);
-  
-  
-  
-  
-        console.log("response URL: ", result.url);
-       return res.status(200).json({ URL: result.url })
-  
-      }
-  
-  
-    });
-  
-  
-  
-  })
 
 module.exports=router;
