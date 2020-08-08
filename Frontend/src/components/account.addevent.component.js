@@ -22,6 +22,8 @@ function getToday() {
 
 }
 
+let uploadPercentage =3000;
+
 
 export default class addEvent extends Component {
 
@@ -41,6 +43,7 @@ export default class addEvent extends Component {
       
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onUpload = this.onUpload.bind(this);
        
 
         this.onForgotPassword = this.onForgotPassword.bind(this);
@@ -58,8 +61,7 @@ export default class addEvent extends Component {
             today: '',
             venue: '',
             duartation:'',
-            uploadPercentage:0
-
+           
 
 
         }
@@ -167,59 +169,28 @@ export default class addEvent extends Component {
     }
 
    
-     onUpload=(e)=> {
+   async  onUpload(e) {
 
         e.preventDefault();
 
+     
 
-        let Toast = Swal.mixin({
-            toast: true,
-            position: 'center',
-            showConfirmButton: false,
-            timer: this.state.uploadPercentage,
-            timerProgressBar: true,
-            onOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            },
-            onBeforeOpen: () => {
-                Swal.showLoading()
-            }
-
-
-        })
         
 
 
         const formData = new FormData();
 
+        console.log("image is",this.state.img );
         formData.append('img', this.state.img);
 
 
         
 
-         axios.post(`http://${config.host}:${config.port}/events/upload`, formData ,{
-            onUploadProgress: ProgressEvent => {
-
-                this.state.uploadPercentage = 100 - parseInt((Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)))
-
-                console.log("percentage inside ", this.state.uploadPercentage);
-
-                Toast.fire({
-                    icon: 'info',
-                    title: 'Uploading on Progress.',
-                    text: 'Please wait a moment',
+       await  axios.post(`http://${config.host}:${config.port}/events/upload`, formData,
+        
 
 
-                })
-
-                setTimeout(() => this.state.uploadPercentage = 0, 1000)
-
-
-            }
-
-
-        }).then((res) => {
+        ).then((res) => {
 
             console.log("response is: ", res.data);
 
@@ -242,7 +213,7 @@ export default class addEvent extends Component {
                     text: res.data.msg,
                     icon: "error",
 
-                    dangerMode: true,
+                   
                 })
 
 
@@ -258,7 +229,7 @@ export default class addEvent extends Component {
                     text: "Some Error Occured",
                     icon: "error",
 
-                    dangerMode: true,
+                    
                 })
 
           
@@ -279,7 +250,7 @@ export default class addEvent extends Component {
             toast: true,
             position: 'center',
             showConfirmButton: false,
-            timer: this.state.uploadPercentage,
+            timer: uploadPercentage,
             timerProgressBar: true,
             onOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
