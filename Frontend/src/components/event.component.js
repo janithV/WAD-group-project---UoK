@@ -4,10 +4,15 @@ import Navbar from "./navbar.component";
 import Footer from "./footer.component";
 import axios from 'axios';
 import backgroundim4 from '../assets/img/contactback.jpg'
+import swal from '@sweetalert/with-react';
 
 
 import "aos/dist/aos.css";
 export default class Event extends Component{
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+}
  
   state = {
     events: []
@@ -24,6 +29,23 @@ componentDidMount() {
         once:true
     });
     }
+    logout() {
+      const C={
+        customerid: localStorage.getItem('cusid'),
+        eventid: this.props.match.params.eventId,
+        nooftickets: 1
+      }
+     
+     axios.post("http://localhost:3000/booking" , C).then(res=>{
+      console.log(res.data.message);
+      if(res.data.message == "sBooking added"){
+        swal("You have successfully reserved a ticket!", "Thank You!", "success");
+      }
+      else{
+        swal("Unsuccessful!", "Try again!", "warning");
+      }
+     })
+  }
     render(){
         return(
           
@@ -78,7 +100,7 @@ componentDidMount() {
         
                     <div className="text-center" style={{paddingTop: "50px"}}>
                     {
-                        localStorage.getItem("loggedIn") ==="loggedIn"? <button type="submit">Reserve Ticket</button> : <button type="submit">Please Sign In to Reserve</button>
+                        localStorage.getItem("loggedIn") ==="loggedIn"? <button type="submit" onClick={this.logout}>Reserve Ticket</button> : <button type="submit">Please Sign In to Reserve</button>
                     }
                       </div>
                   </div>
