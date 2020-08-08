@@ -57,7 +57,8 @@ export default class addEvent extends Component {
             organizer: '',
             today: '',
             venue: '',
-            duartation:''
+            duartation:'',
+            uploadPercentage:0
 
 
 
@@ -166,7 +167,7 @@ export default class addEvent extends Component {
     }
 
    
-    async onUpload(e) {
+     onUpload=(e)=> {
 
         e.preventDefault();
 
@@ -187,7 +188,7 @@ export default class addEvent extends Component {
 
 
         })
-        console.log("percentage ", this.state.uploadPercentage);
+        
 
 
         const formData = new FormData();
@@ -195,9 +196,9 @@ export default class addEvent extends Component {
         formData.append('img', this.state.img);
 
 
-        let token = localStorage.getItem('token')
+        
 
-        await axios.post(`http://${config.host}:${config.port}/events/upload`, formData, {
+         axios.post(`http://${config.host}:${config.port}/events/upload`, formData ,{
             onUploadProgress: ProgressEvent => {
 
                 this.state.uploadPercentage = 100 - parseInt((Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)))
@@ -254,7 +255,7 @@ export default class addEvent extends Component {
 
                 Swal.fire({
                     title: "Event Hosting Interrupted",
-                    text: "Session has Expired Please Log in! ",
+                    text: "Some Error Occured",
                     icon: "error",
 
                     dangerMode: true,
@@ -297,16 +298,17 @@ export default class addEvent extends Component {
             startTime: this.state.time,
             date: this.state.date,           
             description: this.state.description,
-            contact: this.state.contact,
+            venue:this.state.value,
+            duration: this.state.duartation,
             img: this.state.imgCloud,
-            organizer: localStorage.getItem("firstname")
+            customerId: localStorage.getItem("custid")
 
 
         }
 
 
         let token = localStorage.getItem('token')
-        const response = axios.post(`http://${config.host}:${config.port}/event/add`, Entry, 
+        const response = axios.post(`http://${config.host}:${config.port}/events/addEvent`, Entry, 
 
 
         ).then(

@@ -101,6 +101,7 @@ export default class Dashboard extends Component {
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassoword = this.onChangePassoword.bind(this);
+        this.onChangeSearch=this.onChangeSearch.bind(this);
        
         this.onForgotPassword = this.onForgotPassword.bind(this);
         this.getAllEntries = this.getAllEntries.bind(this);
@@ -111,7 +112,8 @@ export default class Dashboard extends Component {
 
             token: '',
             events: [],
-            hosts:[]
+            hosts:[],
+            search:''
 
 
         }
@@ -129,6 +131,9 @@ export default class Dashboard extends Component {
         this.getAllEntries();
         
 
+
+    }
+    onChangeSearch(){
 
     }
 
@@ -267,6 +272,22 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <Navbar/>
+
+{/* <div className="searchbox">
+
+<input type="text" name="" placeholder="Serach" class="text" onChange={this.onChangeSearch()} value={this.state.search}/>
+      <a class="btn"><i class="fa fa-search "></i></a>
+ </div> */}
+
+ <div class="searchWrap">
+   <div class="searchBox">
+      <input type="text" class="searchTerm" placeholder="Search Events"  onChange={this.onChangeSearch()} />
+      <a  class="searchButton" style={{color:"white"}}>
+        <i class="fa fa-search"></i>
+     </a>
+   </div>
+</div>
+
 
                 <div className="container" style={{padding: "50px"}}>
                     <h1 style={{paddingBottom: "50px", fontSize: "80px"}}>My Bookings</h1>

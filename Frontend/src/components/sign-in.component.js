@@ -38,7 +38,7 @@ export default class About extends Component{
             if(res.data.message === "Verified"){
                 console.log("Successfull");
                 localStorage.setItem("cusid" , res.data.CustomerID);
-                console.log("Cus Id is", localStorage.getItem("cusid"));
+                
                 localStorage.setItem("username" , this.state.userName);
                 localStorage.setItem("loggedIn" , "loggedIn");
                 this.props.history.push('/');

@@ -506,3 +506,49 @@ iframe {
   margin-top: 1.5em;
 
 }
+
+/* Account Search */
+
+.searchBox {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #AB47BC;
+  border-right: none;
+  padding: 5px;
+  height: 37px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color:#C2185B;
+}
+
+.searchTerm:focus{
+  color: #AB47BC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #AB47BC;
+  background: #AB47BC;
+  text-align: center;
+  color:#D4D4D4;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.searchWrap{
+  width: 40%;
+  max-width: 400px;
+  position: absolute;
+  top: 8%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  margin-top: 50px;
+}

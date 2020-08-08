@@ -106,7 +106,9 @@ router.get('/myHostedEvents/:custId',(req,res,next)=>{
 });
 
 
-router.post('/upload', (req, res) => {
+router.post('/upload', (req, res,next) => {
+
+    console.log("Came here");
 
 
     if (req.files === null) {
@@ -131,7 +133,7 @@ router.post('/upload', (req, res) => {
   
   
         console.log("response URL: ", result.url);
-        res.status(200).json({ URL: result.url })
+       return res.status(200).json({ URL: result.url })
   
       }
   

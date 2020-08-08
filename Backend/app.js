@@ -1,6 +1,7 @@
 const express = require('express');
 const app= express();
 const bodyParser=require('body-parser');
+const fileupload = require('express-fileupload');
 
 const eventsRouter= require('./api/routes/events');
 const customerRouter= require('./api/Routes/customer');
@@ -26,6 +27,10 @@ app.use((req,res,next)=>{
 app.use('/events',eventsRouter);
 app.use('/customer',customerRouter);
 app.use('/booking',bookingRouter);
+app.use(fileupload({
+    useTempFiles: true
+  }));
+  
 
 //error handling
 app.use((req,res,next)=>{
