@@ -8,12 +8,8 @@ const eventsRouter= require('./api/routes/events');
 const customerRouter= require('./api/Routes/customer');
 const bookingRouter=require('./api/Routes/booking');
 
-<<<<<<< HEAD
-app.use(bodyParser.urlencoded({extended:true}));
-=======
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
->>>>>>> 3c2562f9d9942e88e86f9f005fc43c4051740d1a
 app.use(bodyParser.json());
 
 // app.use((req,res,next)=>{
