@@ -45,7 +45,7 @@ const Card1 = props => (
             </div>
             <div className="card-read-more">
             <Link to= {"/account/event/view/" + props.event.eventid} >   <a className="btn btn-link btn-block" href="#">
-                    View More
+                    Edit
                 </a></Link>
             </div>
         </div>
@@ -83,7 +83,7 @@ const Card2 = props => (
             </div>
             <div className="card-read-more">
              <Link to= {"/account/event/view/" + props.event.eventid} >   <a className="btn btn-link btn-block" href="#">
-                    View More
+                   Edit
                 </a></Link>
             </div>
         </div>

@@ -2,34 +2,38 @@ const express = require('express');
 const app= express();
 const bodyParser=require('body-parser');
 const fileupload = require('express-fileupload');
+const cors = require('cors');
 
 const eventsRouter= require('./api/routes/events');
 const customerRouter= require('./api/Routes/customer');
 const bookingRouter=require('./api/Routes/booking');
 
+<<<<<<< HEAD
 app.use(bodyParser.urlencoded({extended:true}));
+=======
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+>>>>>>> 3c2562f9d9942e88e86f9f005fc43c4051740d1a
 app.use(bodyParser.json());
 
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+// app.use((req,res,next)=>{
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
-    if(req.method==='OPTIONS'){
-        res.header("Access-Control-Allow-Methods", 'PUT, POST, PATCH, DELETE, GET');
-        res.status(200).json({});
-    }
+//     if(req.method==='OPTIONS'){
+//         res.header("Access-Control-Allow-Methods", 'PUT, POST, PATCH, DELETE, GET');
+//         res.status(200).json({});
+//     }
 
-    next();
-});
+//     next();
+// });
 
 
 app.use('/events',eventsRouter);
 app.use('/customer',customerRouter);
 app.use('/booking',bookingRouter);
-app.use(fileupload({
-    useTempFiles: true
-  }));
+app.use(fileupload());
   
 
 //error handling

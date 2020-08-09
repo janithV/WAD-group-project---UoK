@@ -70,7 +70,7 @@ router.get('/:eventId',(req,res,next)=>{
     conn.query("SELECT * from event where eventid =?",[id], (err,rows,fields)=>{
         if(!err){
             console.log(rows);
-            res.status(200).send(rows);
+            res.status(200).send(rows[0]);
         }
         else{
             console.log(err);
