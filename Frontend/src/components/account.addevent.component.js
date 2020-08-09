@@ -152,7 +152,7 @@ export default class addEvent extends Component {
 
         });
 
-        console.log("image is", e.target.files[0])
+        console.log("image selected is", e.target.files[0])
 
 
     }
@@ -169,79 +169,109 @@ export default class addEvent extends Component {
     }
 
    
-   async  onUpload(e) {
+   async onUpload(e) {
+    e.preventDefault();
 
-        e.preventDefault();
 
-     
+    let Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: this.state.uploadPercentage,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        },
+        onBeforeOpen: () => {
+            Swal.showLoading()
+        }
+
+
+    })
+    console.log("percentage ", this.state.uploadPercentage);
+
+
+    const formData = new FormData();
+
+    let image = this.state.img;
+
+    formData.append('img', image);
+    console.log("Appending: ", image);
+
+
+    
+
+   await axios.post(`http://${config.host}:${config.port}/events/upload`, formData, {
 
         
+        onUploadProgress: ProgressEvent => {
+
+            this.state.uploadPercentage = 100 - parseInt((Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total)))
+
+            console.log("percentage inside ", this.state.uploadPercentage);
+
+            Toast.fire({
+                icon: 'info',
+                title: 'Uploading on Progress.',
+                text: 'Please wait a moment',
 
 
-        const formData = new FormData();
+            })
 
-        console.log("image is",this.state.img );
-        formData.append('img', this.state.img);
+            setTimeout(() => this.state.uploadPercentage = 0, 1000)
 
+
+        }
+
+
+    }).then((res) => {
+
+        console.log("response is: ", res.data);
+
+        if (res.data.URL) {
+
+            this.setState({
+
+                imgCloud: res.data.URL
+
+
+            });
+
+            this.onSubmit();
+
+
+        }
+        if (res.data.msg) {
+            Swal.fire({
+                title: "Upload Interrupted",
+                text: res.data.msg,
+                icon: "error",
+
+                dangerMode: true,
+            })
+
+
+        }
+
+    }).catch((err => {
 
         
+            Swal.fire({
+                title: "Event Hosting Interrupted",
+                text: "Some Error Occured! ",
+                icon: "error",
 
-       await  axios.post(`http://${config.host}:${config.port}/events/upload`, formData,
-        
+                dangerMode: true,
+            })
 
-
-        ).then((res) => {
-
-            console.log("response is: ", res.data);
-
-            if (res.data.URL) {
-
-                this.setState({
-
-                    imgCloud: res.data.URL
+       
 
 
-                });
-
-                this.onSubmit();
+    }))
 
 
-            }
-            if (res.data.msg) {
-                Swal.fire({
-                    title: "Upload Interrupted",
-                    text: res.data.msg,
-                    icon: "error",
-
-                   
-                })
-
-
-            }
-
-        }).catch((err => {
-
-           
-           
-
-                Swal.fire({
-                    title: "Event Hosting Interrupted",
-                    text: "Some Error Occured",
-                    icon: "error",
-
-                    
-                })
-
-          
-
-
-        }))
-
-
-    }
-
-
-   
+}
 
     onSubmit() {
 
